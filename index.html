@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorations Unveiled</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #ff5252 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+        }
+
+        nav {
+            background-color: #3498db;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 60px;
+            background-color: white;
+            margin: 30px auto;
+            max-width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        section:nth-of-type(even) {
+            background-color: #f3f4f6;
+        }
+
+        h2 {
+            color: #3498db;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: #3498db;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
+
+        /* Scroll-to-top button */
+        #scroll-top-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #scroll-top-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .dark-mode nav,
+        .dark-mode header,
+        .dark-mode footer {
+            background-color: #1a252f;
+        }
+
+        .dark-mode nav a:hover {
+            background-color: #4e5d6d;
+        }
+
+        /* Gallery Styling */
+        #gallery {
+            display: none; /* Default to not display */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        #gallery img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        #gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Explorations Unveiled</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+        <a href="#gallery" onclick="toggleGallery()">Gallery</a>
+        <button id="dark-mode-toggle" onclick="toggleDarkMode()" style="margin-left: 10px; padding: 10px; background-color: #2980b9; color: white; border: none; border-radius: 4px; cursor: pointer;">Dark Mode</button>
+    </nav>
+
+    <section id="home">
+        <h2>Home</h2>
+        <p>Explore, Engage, Enlighten! This is where we share our latest explorations and findings.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Our fervor lies in delving into the wonders of our surroundings and spreading the joy of exploration.</p>
+    </section>
+
+    <section id="blog">
+        <h2>Blog</h2>
+        <h3>Latest Entries</h3>
+        <article>
+            <h4>Entry Title</h4>
+            <p>Description of your discovery...</p>
+        </article>
+        <article>
+            <h4>Another Entry Title</h4>
+            <p>Description of another discovery...</p>
+        </article>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have a question or want to share your own discoveries? Get in touch!</p>
+        <form action="https://formspree.io/f/xgvevekq" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+            <input type="submit" value="Send">
+        </form>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <img src="https://source.unsplash.com/featured/?exploration" alt="Exploration Image 1">
+        <img src="https://source.unsplash.com/featured/?nature" alt="Exploration Image 2">
+        <img src="https://source.unsplash.com/featured/?adventure" alt="Exploration Image 3">
+        <img src="https://source.unsplash.com/featured/?discovery" alt="Exploration Image 4">
+        <button onclick="toggleGallery()">Close Gallery</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Explorations Unveiled. All rights reserved.</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="scrollToTop()" id="scroll-top-btn" title="Go to top">Top</button>
+
+    <script>
+        // Scroll to top button script
+        window.onscroll = function () { scrollFunction(); };
+
+        function scrollFunction() {
+            var scrollTopButton = document.getElementById("scroll-top-btn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollTopButton.style.display = "block";
+            } else {
+                scrollTopButton.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            var toggleButton = document.getElementById("dark-mode-toggle");
+            toggleButton.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
+        }
+
+        // Toggle Gallery Display
+        function toggleGallery() {
+            var gallery = document.getElementById("gallery");
+            gallery.style.display = gallery.style.display === "flex" ? "none" : "flex";
+        }
+    </script>
+
+</body>
+
+</html>
+
