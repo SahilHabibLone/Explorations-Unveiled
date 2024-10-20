@@ -108,6 +108,7 @@
 
         input[type="text"],
         input[type="email"],
+        input[type="password"],
         textarea {
             width: 100%;
             padding: 12px;
@@ -261,6 +262,19 @@
         <p>Our fervor lies in delving into the wonders of our surroundings and spreading the joy of exploration.</p>
     </section>
 
+    <section id="signup">
+        <h2>Sign Up</h2>
+        <form action="https://formspree.io/f/xgvevekq" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Create Account">
+        </form>
+    </section>
+
     <section id="blog">
         <h2>Blog</h2>
         <h3>Latest Entries</h3>
@@ -270,83 +284,84 @@
             <div class="comments">
                 <h5>Comments</h5>
                 <form action="#" method="POST">
-                    <textarea name="comment" rows="4" placeholder="Write your comment..." required></textarea>
-                    <input type="submit" value="Post Comment">
+                    <textarea name="comment" rows="4" placeholder="Write your comment..."></textarea>
+                    <input type="submit" value="Submit Comment">
                 </form>
             </div>
         </article>
     </section>
 
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <img src="images/20240508_160220.jpg" alt="Exploration Image 1">
-        <img src="images/20240508_160910.jpg" alt="Exploration Image 2">
-        <img src="images/20240508_162018.jpg" alt="Exploration Image 3">
-        <img src="images/IMG_20240201_092456.jpg" alt="Exploration Image 4">
-        <img src="images/IMG_20240204_134303.jpg" alt="Exploration Image 5">
-        <img src="images/IMG_20240522_201755.jpg" alt="Exploration Image 6">
-        <img src="images/IMG_20240809_142627.jpg" alt="Exploration Image 7">
-    </section>
-
     <section id="contact">
         <h2>Contact Us</h2>
-        <p>Have a question or want to share your own discoveries? Get in touch!</p>
         <form action="https://formspree.io/f/xgvevekq" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
-            <input type="submit" value="Send">
+            <label for="contact-name">Name:</label>
+            <input type="text" id="contact-name" name="name" required>
+            <label for="contact-email">Email:</label>
+            <input type="email" id="contact-email" name="email" required>
+            <label for="contact-message">Message:</label>
+            <textarea id="contact-message" name="message" required></textarea>
+            <input type="submit" value="Send Message">
         </form>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Explorations Unveiled</p>
-        <p>Follow us on YouTube: <a href="https://www.youtube.com/@Cddpp" target="_blank" style="color: white; text-decoration: underline;">@Cddpp</a></p>
-    </footer>
+    <div id="gallery">
+        <h2>Gallery</h2>
+        <img src="image1.jpg" alt="Discovery 1" onclick="openLightbox(this)">
+        <img src="image2.jpg" alt="Discovery 2" onclick="openLightbox(this)">
+        <img src="image3.jpg" alt="Discovery 3" onclick="openLightbox(this)">
+    </div>
 
-    <button id="scroll-top-btn" onclick="scrollToTop()">&#8679; Top</button>
-
-    <div id="lightbox" onclick="this.style.display='none'">
+    <div id="lightbox" onclick="closeLightbox()">
         <span id="lightbox-close">&times;</span>
         <img id="lightbox-img" src="" alt="">
     </div>
 
-    <script>
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    <footer>
+        <p>&copy; 2024 Explorations Unveiled. All Rights Reserved.</p>
+    </footer>
 
+    <button id="scroll-top-btn" onclick="scrollToTop()">↑</button>
+
+    <script>
         function toggleGallery() {
             const gallery = document.getElementById('gallery');
-            gallery.style.display = gallery.style.display === 'flex' ? 'none' : 'flex';
+            if (gallery.style.display === "none" || gallery.style.display === "") {
+                gallery.style.display = "flex";
+            } else {
+                gallery.style.display = "none";
+            }
+        }
+
+        function openLightbox(image) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightbox.style.display = 'flex';
+            lightboxImg.src = image.src;
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
         }
 
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
+            const body = document.body;
+            body.classList.toggle("dark-mode");
         }
 
-        // Open images in lightbox
-        const galleryImages = document.querySelectorAll('#gallery img');
-        galleryImages.forEach(image => {
-            image.addEventListener('click', function () {
-                const lightbox = document.getElementById('lightbox');
-                const lightboxImg = document.getElementById('lightbox-img');
-                lightboxImg.src = this.src;
-                lightbox.style.display = 'flex';
-            });
-        });
-
         window.onscroll = function () {
-            const scrollBtn = document.getElementById('scroll-top-btn');
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                scrollBtn.style.display = 'block';
+            const btn = document.getElementById("scroll-top-btn");
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                btn.style.display = "block";
             } else {
-                scrollBtn.style.display = 'none';
+                btn.style.display = "none";
             }
         };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
     </script>
 
 </body>
