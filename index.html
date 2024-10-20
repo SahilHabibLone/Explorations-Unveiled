@@ -262,53 +262,45 @@
 
     <section id="gallery">
         <h2>Gallery</h2>
-        <img src="https://source.unsplash.com/featured/?exploration" alt="Exploration Image 1">
-        <img src="https://source.unsplash.com/featured/?nature" alt="Exploration Image 2">
-        <img src="https://source.unsplash.com/featured/?adventure" alt="Exploration Image 3">
-        <img src="https://source.unsplash.com/featured/?discovery" alt="Exploration Image 4">
-        <button onclick="toggleGallery()">Close Gallery</button>
+        <img src="images/20240508_160220.jpg" alt="Exploration Image 1">
+        <img src="images/20240508_160910.jpg" alt="Exploration Image 2">
+        <img src="images/20240508_162018.jpg" alt="Exploration Image 3">
+        <img src="images/IMG_20240201_092456.jpg" alt="Exploration Image 4">
+        <img src="images/IMG_20240204_134303.jpg" alt="Exploration Image 5">
+        <img src="images/IMG_20240522_201755.jpg" alt="Exploration Image 6">
+        <img src="images/IMG_20240809_142627.jpg" alt="Exploration Image 7">
     </section>
 
     <footer>
-        <p>&copy; 2024 Explorations Unveiled. All rights reserved.</p>
+        <p>&copy; 2024 Explorations Unveiled</p>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button onclick="scrollToTop()" id="scroll-top-btn" title="Go to top">Top</button>
+    <button id="scroll-top-btn" onclick="scrollToTop()">&#8679; Top</button>
 
     <script>
-        // Scroll to top button script
-        window.onscroll = function () { scrollFunction(); };
-
-        function scrollFunction() {
-            var scrollTopButton = document.getElementById("scroll-top-btn");
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                scrollTopButton.style.display = "block";
-            } else {
-                scrollTopButton.style.display = "none";
-            }
-        }
-
         function scrollToTop() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Dark Mode Toggle
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-            var toggleButton = document.getElementById("dark-mode-toggle");
-            toggleButton.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
-        }
-
-        // Toggle Gallery Display
         function toggleGallery() {
-            var gallery = document.getElementById("gallery");
-            gallery.style.display = gallery.style.display === "flex" ? "none" : "flex";
+            const gallery = document.getElementById('gallery');
+            gallery.style.display = gallery.style.display === 'flex' ? 'none' : 'flex';
         }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        window.onscroll = function () {
+            const scrollBtn = document.getElementById('scroll-top-btn');
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollBtn.style.display = 'block';
+            } else {
+                scrollBtn.style.display = 'none';
+            }
+        };
     </script>
 
 </body>
 
 </html>
-
