@@ -54,7 +54,7 @@
             transition: background-color 0.3s, transform 0.2s;
             display: inline-block;
             border-radius: 8px;
-            border: 2px solid transparent; /* For tab visibility */
+            border: 2px solid transparent;
         }
 
         nav a:hover {
@@ -72,7 +72,7 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s forwards;
-            border: 2px solid #3498db; /* Visible border for sections */
+            border: 2px solid #3498db;
         }
 
         section:nth-of-type(even) {
@@ -100,7 +100,7 @@
             background-color: #f9f9f9;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #3498db; /* Visible border for form */
+            border: 2px solid #3498db;
         }
 
         label {
@@ -184,7 +184,7 @@
         }
 
         .dark-mode nav a {
-            border-color: #ecf0f1; /* Visible border for dark mode */
+            border-color: #ecf0f1;
         }
 
         .dark-mode nav a:hover {
@@ -193,21 +193,26 @@
 
         .dark-mode section {
             background-color: #34495e;
-            border-color: #1a252f; /* Dark mode section border */
+            border-color: #1a252f;
         }
 
         .dark-mode form {
             background-color: #34495e;
-            border-color: #1a252f; /* Dark mode form border */
+            border-color: #1a252f;
         }
 
         /* Gallery Styling */
         #gallery {
-            display: none; /* Default to not display */
+            display: none;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
             padding: 40px;
+        }
+
+        .photo-container {
+            position: relative;
+            display: inline-block;
         }
 
         #gallery img {
@@ -222,6 +227,24 @@
         #gallery img:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .like-button {
+            position: absolute;
+            bottom: 10px; /* Adjust as needed */
+            left: 10px; /* Adjust as needed */
+            background: transparent;
+            border: none;
+            font-size: 24px; /* Size of the heart */
+            cursor: pointer;
+        }
+
+        .like-count {
+            position: absolute;
+            bottom: 10px; /* Adjust as needed */
+            left: 50px; /* Adjust to position next to the button */
+            font-size: 18px;
+            color: #333; /* Change color as desired */
         }
 
         @keyframes fadeInUp {
@@ -282,117 +305,136 @@
     </section>
 
     <section id="about">
-        <h2>About Us</h2>
-        <p>Our fervor lies in delving into the wonders of our surroundings and spreading the joy of exploration.</p>
+        <h2>About</h2>
+        <p>Our journey began with a passion for exploration and a desire to share our experiences with the world. Join us as we uncover the beauty of nature, culture, and life itself!</p>
     </section>
 
     <section id="blog">
         <h2>Blog</h2>
-        <p>Join us in our journey as we unravel stories, insights, and marvels of the world.</p>
+        <p>Stay tuned for exciting articles about our recent adventures and discoveries!</p>
     </section>
 
     <section id="contact">
         <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/mbljllpq" method="POST" onsubmit="return validateForm()">
-            <label for="contact-name">Name:</label>
-            <input type="text" id="contact-name" name="name" required>
-            <label for="contact-email">Email:</label>
-            <input type="email" id="contact-email" name="email" required>
-            <label for="contact-message">Message:</label>
-            <textarea id="contact-message" name="message" required></textarea>
-            <label for="human-check">
-                <input type="checkbox" id="human-check" name="human-check" required>
-                I confirm that I am not a robot
-            </label>
+        <form action="https://formspree.io/f/xgvevekq" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
             <input type="submit" value="Send Message">
         </form>
     </section>
 
     <div id="gallery">
-    <h2>Gallery</h2>
-    <img src="./images/20240508_160220.jpg" alt="Exploration Image 1" onclick="openLightbox(this)">
-    <img src="./images/20240508_160910.jpg" alt="Exploration Image 2" onclick="openLightbox(this)">
-    <img src="./images/20240508_162018.jpg" alt="Exploration Image 3" onclick="openLightbox(this)">
-    <img src="./images/IMG_20240201_092456.jpg" alt="Exploration Image 4" onclick="openLightbox(this)">
-    <img src="./images/IMG_20240204_134303.jpg" alt="Exploration Image 5" onclick="openLightbox(this)">
-    <img src="./images/IMG_20240522_201755.jpg" alt="Exploration Image 6" onclick="openLightbox(this)">
-</div>
-
+        <h2>Gallery</h2>
+        <div class="photo-container">
+            <img src="./images/20240508_160220.jpg" alt="Exploration Image 1" onclick="openLightbox(this)">
+            <button class="like-button" onclick="toggleLike(this)">
+                ❤️
+            </button>
+            <span class="like-count">0</span>
+        </div>
+        <div class="photo-container">
+            <img src="./images/20240508_160910.jpg" alt="Exploration Image 2" onclick="openLightbox(this)">
+            <button class="like-button" onclick="toggleLike(this)">
+                ❤️
+            </button>
+            <span class="like-count">0</span>
+        </div>
+        <div class="photo-container">
+            <img src="./images/20240508_162018.jpg" alt="Exploration Image 3" onclick="openLightbox(this)">
+            <button class="like-button" onclick="toggleLike(this)">
+                ❤️
+            </button>
+            <span class="like-count">0</span>
+        </div>
+        <div class="photo-container">
+            <img src="./images/IMG_20240201_092456.jpg" alt="Exploration Image 4" onclick="openLightbox(this)">
+            <button class="like-button" onclick="toggleLike(this)">
+                ❤️
+            </button>
+            <span class="like-count">0</span>
+        </div>
+        <div class="photo-container">
+            <img src="./images/IMG_20240204_134303.jpg" alt="Exploration Image 5" onclick="openLightbox(this)">
+            <button class="like-button" onclick="toggleLike(this)">
+                ❤️
+            </button>
+            <span class="like-count">0</span>
+        </div>
+        <div class="photo-container">
+            <img src="./images/IMG_20240522_201755.jpg" alt="Exploration Image 6" onclick="openLightbox(this)">
+            <button class="like-button" onclick="toggleLike(this)">
+                ❤️
+            </button>
+            <span class="like-count">0</span>
+        </div>
+    </div>
 
     <div id="lightbox" onclick="closeLightbox()">
-        <span id="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="">
+        <img id="lightbox-image" src="" alt="Lightbox Image">
+        <span id="lightbox-close" onclick="closeLightbox()">✖</span>
     </div>
 
     <footer>
-        <p>&copy; 2024 Explorations Unveiled. All Rights Reserved.</p>
+        <p>&copy; 2024 Explorations Unveiled. All rights reserved.</p>
     </footer>
 
-    <button id="scroll-top-btn" onclick="scrollToTop()">↑</button>
+    <button id="scroll-top-btn" onclick="scrollToTop()">⬆</button>
 
     <script>
         function toggleGallery() {
             const gallery = document.getElementById('gallery');
-            if (gallery.style.display === "none" || gallery.style.display === "") {
-                gallery.style.display = "flex";
+            gallery.style.display = gallery.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function toggleLike(button) {
+            const likeCountElement = button.nextElementSibling;
+            let likeCount = parseInt(likeCountElement.textContent);
+
+            if (button.classList.toggle('liked')) {
+                likeCount++;
+                button.textContent = '❤️'; // Change to filled heart
             } else {
-                gallery.style.display = "none";
+                likeCount--;
+                button.textContent = '🤍'; // Change to empty heart
             }
+
+            likeCountElement.textContent = likeCount;
         }
 
         function openLightbox(image) {
             const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxImage = document.getElementById('lightbox-image');
+            lightboxImage.src = image.src;
             lightbox.style.display = 'flex';
-            lightboxImg.src = image.src;
         }
 
         function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.style.display = 'none';
+            document.getElementById('lightbox').style.display = 'none';
         }
-
-        function toggleDarkMode() {
-            const body = document.body;
-            const nav = document.querySelector('nav');
-            const header = document.querySelector('header');
-            const footer = document.querySelector('footer');
-            const sections = document.querySelectorAll('section');
-
-            body.classList.toggle("dark-mode");
-            nav.classList.toggle("dark-mode");
-            header.classList.toggle("dark-mode");
-            footer.classList.toggle("dark-mode");
-
-            sections.forEach((section) => {
-                section.classList.toggle("dark-mode");
-            });
-        }
-
-        window.onscroll = function () {
-            const btn = document.getElementById("scroll-top-btn");
-            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                btn.style.display = "block";
-            } else {
-                btn.style.display = "none";
-            }
-        };
 
         function scrollToTop() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function validateForm() {
-            const humanCheck = document.getElementById('human-check');
-            if (!humanCheck.checked) {
-                alert('Please confirm you are not a robot.');
-                return false;
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Show/hide scroll-to-top button
+        window.onscroll = function () {
+            const button = document.getElementById('scroll-top-btn');
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
             }
-            return true;
-        }
+        };
     </script>
-
 </body>
 
 </html>
