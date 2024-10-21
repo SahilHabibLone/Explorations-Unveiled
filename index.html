@@ -31,6 +31,9 @@
             padding: 60px 0;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInDown 1s forwards; /* Added animation */
         }
 
         header h1 {
@@ -210,11 +213,6 @@
             padding: 40px;
         }
 
-        .photo-container {
-            position: relative;
-            display: inline-block;
-        }
-
         #gallery img {
             width: 300px;
             height: auto;
@@ -227,31 +225,6 @@
         #gallery img:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .like-button {
-            position: absolute;
-            bottom: 10px; /* Adjust as needed */
-            left: 10px; /* Adjust as needed */
-            background: transparent;
-            border: none;
-            font-size: 24px; /* Size of the heart */
-            cursor: pointer;
-        }
-
-        .like-count {
-            position: absolute;
-            bottom: 10px; /* Adjust as needed */
-            left: 50px; /* Adjust to position next to the button */
-            font-size: 18px;
-            color: #333; /* Change color as desired */
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         /* Lightbox */
@@ -280,6 +253,20 @@
             font-size: 2rem;
             color: white;
             cursor: pointer;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -331,45 +318,21 @@
         <h2>Gallery</h2>
         <div class="photo-container">
             <img src="./images/20240508_160220.jpg" alt="Exploration Image 1" onclick="openLightbox(this)">
-            <button class="like-button" onclick="toggleLike(this)">
-                ❤️
-            </button>
-            <span class="like-count">0</span>
         </div>
         <div class="photo-container">
             <img src="./images/20240508_160910.jpg" alt="Exploration Image 2" onclick="openLightbox(this)">
-            <button class="like-button" onclick="toggleLike(this)">
-                ❤️
-            </button>
-            <span class="like-count">0</span>
         </div>
         <div class="photo-container">
             <img src="./images/20240508_162018.jpg" alt="Exploration Image 3" onclick="openLightbox(this)">
-            <button class="like-button" onclick="toggleLike(this)">
-                ❤️
-            </button>
-            <span class="like-count">0</span>
         </div>
         <div class="photo-container">
             <img src="./images/IMG_20240201_092456.jpg" alt="Exploration Image 4" onclick="openLightbox(this)">
-            <button class="like-button" onclick="toggleLike(this)">
-                ❤️
-            </button>
-            <span class="like-count">0</span>
         </div>
         <div class="photo-container">
             <img src="./images/IMG_20240204_134303.jpg" alt="Exploration Image 5" onclick="openLightbox(this)">
-            <button class="like-button" onclick="toggleLike(this)">
-                ❤️
-            </button>
-            <span class="like-count">0</span>
         </div>
         <div class="photo-container">
             <img src="./images/IMG_20240522_201755.jpg" alt="Exploration Image 6" onclick="openLightbox(this)">
-            <button class="like-button" onclick="toggleLike(this)">
-                ❤️
-            </button>
-            <span class="like-count">0</span>
         </div>
     </div>
 
@@ -388,21 +351,6 @@
         function toggleGallery() {
             const gallery = document.getElementById('gallery');
             gallery.style.display = gallery.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function toggleLike(button) {
-            const likeCountElement = button.nextElementSibling;
-            let likeCount = parseInt(likeCountElement.textContent);
-
-            if (button.classList.toggle('liked')) {
-                likeCount++;
-                button.textContent = '❤️'; // Change to filled heart
-            } else {
-                likeCount--;
-                button.textContent = '🤍'; // Change to empty heart
-            }
-
-            likeCountElement.textContent = likeCount;
         }
 
         function openLightbox(image) {
