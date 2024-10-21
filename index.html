@@ -281,7 +281,7 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
+        <a href="#follow">Follow Us</a>
         <a href="#gallery" onclick="toggleGallery()">Gallery</a>
         <button id="dark-mode-toggle" onclick="toggleDarkMode()" style="margin-left: 10px; padding: 10px; background-color: #2980b9; color: white; border: none; border-radius: 4px; cursor: pointer;">Dark Mode</button>
     </nav>
@@ -298,23 +298,20 @@
 
     <section id="blog">
         <h2>Blog</h2>
-        <p>Stay tuned for exciting articles about our recent adventures and discoveries!</p>
+        <p>Stay tuned for exciting articles about our recent adventures and explorations!</p>
     </section>
 
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/xgvevekq" method="POST">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-            <input type="submit" value="Send Message">
-        </form>
+    <section id="follow">
+        <h2>Follow Us</h2>
+        <p>Stay connected with our adventures on YouTube!</p>
+        <a href="https://www.youtube.com/@Cddpp" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" style="width: 50px; height: 50px;">
+        </a>
     </section>
 
-    <div id="gallery">
+    <section id="gallery">
+        <h2>Gallery</h2>
+          <div id="gallery">
         <h2>Gallery</h2>
         <div class="photo-container">
             <img src="./images/20240508_160220.jpg" alt="Exploration Image 1" onclick="openLightbox(this)">
@@ -335,53 +332,55 @@
             <img src="./images/IMG_20240522_201755.jpg" alt="Exploration Image 6" onclick="openLightbox(this)">
         </div>
     </div>
+    </section>
 
     <div id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-image" src="" alt="Lightbox Image">
-        <span id="lightbox-close" onclick="closeLightbox()">✖</span>
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Lightbox Image">
     </div>
+
+    <button id="scroll-top-btn" onclick="scrollToTop()">↑</button>
 
     <footer>
         <p>&copy; 2024 Explorations Unveiled. All rights reserved.</p>
     </footer>
 
-    <button id="scroll-top-btn" onclick="scrollToTop()">⬆</button>
-
     <script>
-        function toggleGallery() {
-            const gallery = document.getElementById('gallery');
-            gallery.style.display = gallery.style.display === 'flex' ? 'none' : 'flex';
+        // Scroll to top button functionality
+        window.onscroll = function () {
+            var btn = document.getElementById("scroll-top-btn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
         }
 
-        function openLightbox(image) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightbox-image');
-            lightboxImage.src = image.src;
-            lightbox.style.display = 'flex';
+        // Gallery toggle functionality
+        function toggleGallery() {
+            var gallery = document.getElementById("gallery");
+            gallery.style.display = gallery.style.display === "none" || gallery.style.display === "" ? "flex" : "none";
+        }
+
+        // Lightbox functionality
+        function openLightbox(src) {
+            document.getElementById("lightbox").style.display = "flex";
+            document.getElementById("lightbox-img").src = src;
         }
 
         function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
+            document.getElementById("lightbox").style.display = "none";
         }
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Dark mode toggle
+        // Dark mode functionality
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle("dark-mode");
         }
-
-        // Show/hide scroll-to-top button
-        window.onscroll = function () {
-            const button = document.getElementById('scroll-top-btn');
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                button.style.display = 'block';
-            } else {
-                button.style.display = 'none';
-            }
-        };
     </script>
 </body>
 
