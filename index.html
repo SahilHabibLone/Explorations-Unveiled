@@ -43,6 +43,7 @@
             background-color: #3498db;
             text-align: center;
             padding: 10px 0;
+            transition: background-color 0.3s;
         }
 
         nav a {
@@ -53,6 +54,7 @@
             transition: background-color 0.3s, transform 0.2s;
             display: inline-block;
             border-radius: 8px;
+            border: 2px solid transparent; /* For tab visibility */
         }
 
         nav a:hover {
@@ -70,6 +72,7 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s forwards;
+            border: 2px solid #3498db; /* Visible border for sections */
         }
 
         section:nth-of-type(even) {
@@ -97,6 +100,7 @@
             background-color: #f9f9f9;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #3498db; /* Visible border for form */
         }
 
         label {
@@ -108,7 +112,6 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="password"],
         textarea {
             width: 100%;
             padding: 12px;
@@ -173,8 +176,29 @@
             background-color: #1a252f;
         }
 
+        .dark-mode nav a,
+        .dark-mode section h2,
+        .dark-mode section p,
+        .dark-mode label {
+            color: #ecf0f1;
+        }
+
+        .dark-mode nav a {
+            border-color: #ecf0f1; /* Visible border for dark mode */
+        }
+
         .dark-mode nav a:hover {
             background-color: #4e5d6d;
+        }
+
+        .dark-mode section {
+            background-color: #34495e;
+            border-color: #1a252f; /* Dark mode section border */
+        }
+
+        .dark-mode form {
+            background-color: #34495e;
+            border-color: #1a252f; /* Dark mode form border */
         }
 
         /* Gallery Styling */
@@ -262,44 +286,24 @@
         <p>Our fervor lies in delving into the wonders of our surroundings and spreading the joy of exploration.</p>
     </section>
 
-    <section id="signup">
-        <h2>Sign Up</h2>
-        <form action="https://formspree.io/f/xgvevekq" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <input type="submit" value="Create Account">
-        </form>
-    </section>
-
     <section id="blog">
         <h2>Blog</h2>
-        <h3>Latest Entries</h3>
-        <article>
-            <h4>Entry Title</h4>
-            <p>Description of your discovery...</p>
-            <div class="comments">
-                <h5>Comments</h5>
-                <form action="#" method="POST">
-                    <textarea name="comment" rows="4" placeholder="Write your comment..."></textarea>
-                    <input type="submit" value="Submit Comment">
-                </form>
-            </div>
-        </article>
+        <p>Join us in our journey as we unravel stories, insights, and marvels of the world.</p>
     </section>
 
     <section id="contact">
         <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/xgvevekq" method="POST">
+        <form action="https://formspree.io/f/mbljllpq" method="POST" onsubmit="return validateForm()">
             <label for="contact-name">Name:</label>
             <input type="text" id="contact-name" name="name" required>
             <label for="contact-email">Email:</label>
             <input type="email" id="contact-email" name="email" required>
             <label for="contact-message">Message:</label>
             <textarea id="contact-message" name="message" required></textarea>
+            <label for="human-check">
+                <input type="checkbox" id="human-check" name="human-check" required>
+                I confirm that I am not a robot
+            </label>
             <input type="submit" value="Send Message">
         </form>
     </section>
@@ -346,7 +350,19 @@
 
         function toggleDarkMode() {
             const body = document.body;
+            const nav = document.querySelector('nav');
+            const header = document.querySelector('header');
+            const footer = document.querySelector('footer');
+            const sections = document.querySelectorAll('section');
+
             body.classList.toggle("dark-mode");
+            nav.classList.toggle("dark-mode");
+            header.classList.toggle("dark-mode");
+            footer.classList.toggle("dark-mode");
+
+            sections.forEach((section) => {
+                section.classList.toggle("dark-mode");
+            });
         }
 
         window.onscroll = function () {
@@ -361,6 +377,15 @@
         function scrollToTop() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
+        }
+
+        function validateForm() {
+            const humanCheck = document.getElementById('human-check');
+            if (!humanCheck.checked) {
+                alert('Please confirm you are not a robot.');
+                return false;
+            }
+            return true;
         }
     </script>
 
