@@ -206,7 +206,7 @@
 
         /* Gallery Styling */
         #gallery {
-            display: none;
+            display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
@@ -303,13 +303,13 @@
 
     <section id="follow">
         <h2>Follow Us</h2>
-        <p>Stay connected with our adventures on YouTube!</p>
-        <a href="https://www.youtube.com/@Cddpp" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" style="width: 50px; height: 50px;">
-        </a>
+        <p>Stay connected by following us on our social media channels for the latest updates!</p>
     </section>
 
     <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="photo-container">
+            <img src="./images/IMG_20240204_134303.jpg" alt="Expl <section id="gallery">
         <h2>Gallery</h2>
           <div id="gallery">
         <h2>Gallery</h2>
@@ -323,65 +323,56 @@
             <img src="./images/20240508_162018.jpg" alt="Exploration Image 3" onclick="openLightbox(this)">
         </div>
         <div class="photo-container">
-            <img src="./images/IMG_20240201_092456.jpg" alt="Exploration Image 4" onclick="openLightbox(this)">
-        </div>
-        <div class="photo-container">
-            <img src="./images/IMG_20240204_134303.jpg" alt="Exploration Image 5" onclick="openLightbox(this)">
+            <img src="./images/IMG_20240201_092456.jpg" alt="Eoration Image 5" onclick="openLightbox(this)">
         </div>
         <div class="photo-container">
             <img src="./images/IMG_20240522_201755.jpg" alt="Exploration Image 6" onclick="openLightbox(this)">
         </div>
-    </div>
+    
     </section>
 
-    <div id="lightbox" onclick="closeLightbox()">
-        <span id="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="Lightbox Image">
-    </div>
-
-    <button id="scroll-top-btn" onclick="scrollToTop()">↑</button>
-
     <footer>
-        <p>&copy; 2024 Explorations Unveiled. All rights reserved.</p>
+        <p>Copyright &copy; 2025 Explorations Unveiled. All rights reserved.</p>
     </footer>
 
+    <button id="scroll-top-btn" onclick="scrollToTop()">Top</button>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <span id="lightbox-close">X</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
     <script>
+        // Dark mode toggle function
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
         // Scroll to top button functionality
         window.onscroll = function () {
-            var btn = document.getElementById("scroll-top-btn");
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                btn.style.display = "block";
+            var scrollTopBtn = document.getElementById('scroll-top-btn');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollTopBtn.style.display = 'block';
             } else {
-                btn.style.display = "none";
+                scrollTopBtn.style.display = 'none';
             }
         };
 
         function scrollToTop() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Gallery toggle functionality
-        function toggleGallery() {
-            var gallery = document.getElementById("gallery");
-            gallery.style.display = gallery.style.display === "none" || gallery.style.display === "" ? "flex" : "none";
-        }
-
-        // Lightbox functionality
+        // Gallery Lightbox
         function openLightbox(src) {
-            document.getElementById("lightbox").style.display = "flex";
-            document.getElementById("lightbox-img").src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-img').src = src;
         }
 
         function closeLightbox() {
-            document.getElementById("lightbox").style.display = "none";
-        }
-
-        // Dark mode functionality
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
+            document.getElementById('lightbox').style.display = 'none';
         }
     </script>
+
 </body>
 
 </html>
